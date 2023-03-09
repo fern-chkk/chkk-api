@@ -467,7 +467,7 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ],
         "x-request-name": "ListTeamInvitationsRequest"
       }
@@ -608,7 +608,7 @@
           }
         },
         "tags": [
-          "Internal Endpoints"
+          "Internal"
         ],
         "x-request-name": "ProxyAmplitudeEventRequest"
       }
@@ -616,7 +616,7 @@
     "/cluster-contexts": {
       "post": {
         "description": "???",
-        "operationId": "SubmitClusterContext",
+        "operationId": "submitClusterContext",
         "responses": {
           "200": {
             "content": {},
@@ -629,8 +629,7 @@
           }
         ],
         "tags": [
-          "Deprecated",
-          "Agent API"
+          "Cluster"
         ],
         "x-request-name": "SubmitClusterContextRequest"
       }
@@ -638,7 +637,7 @@
     "/clusters": {
       "get": {
         "description": "???",
-        "operationId": "ListClusters",
+        "operationId": "getAll",
         "responses": {
           "200": {
             "content": {
@@ -657,14 +656,13 @@
           }
         ],
         "tags": [
-          "Agent",
           "Cluster"
         ],
         "x-request-name": "ListClustersRequest"
       },
       "post": {
         "description": "???",
-        "operationId": "CreateCluster",
+        "operationId": "create",
         "requestBody": {
           "content": {
             "application/json": {
@@ -693,7 +691,7 @@
           }
         ],
         "tags": [
-          "Agent API"
+          "Cluster"
         ],
         "x-request-name": "CreateClusterRequest"
       }
@@ -701,7 +699,7 @@
     "/clusters/{clusterId}": {
       "delete": {
         "description": "???",
-        "operationId": "DeleteCluster",
+        "operationId": "delete",
         "parameters": [
           {
             "explode": false,
@@ -725,7 +723,7 @@
           }
         ],
         "tags": [
-          "Cluster Management"
+          "Cluster"
         ],
         "x-request-name": "DeleteClusterRequest"
       },
@@ -809,8 +807,7 @@
           }
         ],
         "tags": [
-          "Agent API",
-          "Cluster Management"
+          "Cluster"
         ],
         "x-request-name": "UpdateClusterRequest"
       }
@@ -849,7 +846,7 @@
           }
         ],
         "tags": [
-          "Scan Management"
+          "Cluster"
         ],
         "x-request-name": "ListClusterScansWithArsigsRequest"
       }
@@ -898,7 +895,7 @@
           }
         ],
         "tags": [
-          "Cluster Management"
+          "Cluster"
         ],
         "x-request-name": "DeactivateClusterRequest"
       }
@@ -906,7 +903,7 @@
     "/clusters/{clusterId}/lars": {
       "get": {
         "description": "???",
-        "operationId": "ListClusterScansWithLars",
+        "operationId": "getAllClusterScans",
         "parameters": [
           {
             "explode": false,
@@ -976,7 +973,7 @@
           }
         ],
         "tags": [
-          "LAR Status Management"
+          "LAR Status"
         ],
         "x-request-name": "ListLARsStatusRequest"
       }
@@ -1182,7 +1179,7 @@
           }
         ],
         "tags": [
-          "Agent"
+          "Scan"
         ],
         "x-request-name": "GetClusterRescanStateRequest"
       },
@@ -1229,7 +1226,7 @@
           }
         ],
         "tags": [
-          "Agent"
+          "Scan"
         ],
         "x-request-name": "RescanClusterRequest"
       }
@@ -1278,7 +1275,7 @@
           }
         ],
         "tags": [
-          "Agent"
+          "Scan"
         ],
         "x-request-name": "CreateClusterScanRequest"
       }
@@ -1331,6 +1328,7 @@
           }
         ],
         "tags": [
+          "Internal",
           "Deprecated"
         ],
         "x-request-name": "GetInsightsRequest"
@@ -1352,6 +1350,7 @@
           }
         ],
         "tags": [
+          "Internal",
           "Deprecated"
         ],
         "x-request-name": "GetInsightsPeriodsRequest"
@@ -1656,6 +1655,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Internal"],
         "x-request-name": "GetKbaRequest"
       }
     },
@@ -1902,6 +1902,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Internal"],
         "x-request-name": "GetQuickStartStateRequest"
       }
     },
@@ -1945,7 +1946,6 @@
           }
         ],
         "tags": [
-          "Deprecated",
           "Integration"
         ],
         "x-request-name": "GetResourceRequest"
@@ -1972,6 +1972,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Scan"],
         "x-request-name": "ListScansRequest"
       },
       "post": {
@@ -2004,6 +2005,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Scan"],
         "x-request-name": "CreateScanRequest"
       }
     },
@@ -2018,7 +2020,7 @@
           }
         },
         "tags": [
-          "Internal Endpoints"
+          "Internal"
         ],
         "x-request-name": "ProxySentryReportRequest"
       }
@@ -2294,6 +2296,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Internal"],
         "x-request-name": "ListAvailabilityRisksRequest"
       }
     },
@@ -2396,6 +2399,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Internal"],
         "x-request-name": "GetAvailabilityRisksSummaryRequest"
       }
     },
@@ -2601,6 +2605,7 @@
             "accessTokenAuth": []
           }
         ],
+        "tags": ["Internal"],
         "x-request-name": "GetAvailabilityRiskAffectedResourceRequest"
       }
     }
