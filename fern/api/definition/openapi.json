@@ -584,7 +584,7 @@
     "/chkk-analytics": {
       "post": {
         "description": "Endpoint for the Amplitude tunnel used by the web apps to report analytics.",
-        "operationId": "ProxyAmplitudeEvent",
+        "operationId": "createProxyAmplitudeEvent",
         "requestBody": {
           "content": {
             "application/json": {
@@ -815,7 +815,7 @@
     "/clusters/{clusterId}/arsigs": {
       "get": {
         "description": "???",
-        "operationId": "getAll",
+        "operationId": "getAllWithArsigs",
         "parameters": [
           {
             "explode": false,
@@ -934,7 +934,7 @@
           }
         ],
         "tags": [
-          "Scan Management"
+          "Scan"
         ],
         "x-request-name": "ListClusterScansWithLarsRequest"
       }
@@ -942,7 +942,7 @@
     "/clusters/{clusterId}/lars/status": {
       "get": {
         "description": "List the status of all LARs for a cluster",
-        "operationId": "getAllLARsStatus",
+        "operationId": "getAll",
         "parameters": [
           {
             "explode": false,
@@ -1434,7 +1434,7 @@
           }
         ],
         "tags": [
-          "Integration Data Plane"
+          "Integration"
         ],
         "x-request-name": "GetPrometheusMetricsScrapeRequest"
       }
@@ -2012,7 +2012,7 @@
     "/sentry-proxy": {
       "post": {
         "description": "Endpoint for the Sentry tunnel used by the web apps to report issues.\n\nSee https://docs.sentry.io/platforms/javascript/troubleshooting/#using-the-tunnel-option for more details.\n\nThe requests are in POST form, and consist of 3 lines with the first being a form of header containing the DSN of the report. The other lines report metadata as well as the stacktrace/breadcrumbs.\n",
-        "operationId": "ProxySentryReport",
+        "operationId": "createProxySentryReport",
         "responses": {
           "200": {
             "content": {},
