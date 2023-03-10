@@ -9,12 +9,12 @@ Tagging a release on this repository will update the:
 
 This repository contains
 
-- Chkk's Fern API Definition which lives in the [definition](./fern/api/definition/) folder
+- Chkk's OpenAPI Specification which has been updated to be compatible with Fern to generate SDKs. The updated definition lives in the [definition](./fern/api/definition/) folder
 - Generators (see [generators.yml](./fern/api/generators.yml))
 
 ## What is in the API Definition?
 
-The API Definition contains information about what endpoints, types, and errors are used in the API.
+The API Definition contains information about what endpoints, types, and errors are used in the API. To get the OpenAPI Specification to work with Fern's generators, we refactored inlined types, added an `x-request-name` to each endpoint and updated the `operationId` which is used for code generation in the SDK when generating function names for each endpoint.
 
 To make sure that the definition is valid, you can use the Fern CLI.
 
