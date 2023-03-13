@@ -4706,11 +4706,6 @@
       }
     },
     "securitySchemes": {
-      "auth0TokenAuth": {
-        "in": "header",
-        "name": "Authorization",
-        "type": "apiKey"
-      },
       "accessTokenAuth": {
         "in": "header",
         "name": "Authorization",
