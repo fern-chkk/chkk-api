@@ -1655,7 +1655,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Internal"],
+        "tags": [
+          "Internal"
+        ],
         "x-request-name": "GetKbaRequest"
       }
     },
@@ -1902,7 +1904,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Internal"],
+        "tags": [
+          "Internal"
+        ],
         "x-request-name": "GetQuickStartStateRequest"
       }
     },
@@ -1972,7 +1976,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Scan"],
+        "tags": [
+          "Scan"
+        ],
         "x-request-name": "ListScansRequest"
       },
       "post": {
@@ -2005,7 +2011,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Scan"],
+        "tags": [
+          "Scan"
+        ],
         "x-request-name": "CreateScanRequest"
       }
     },
@@ -2296,7 +2304,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Internal"],
+        "tags": [
+          "Internal"
+        ],
         "x-request-name": "ListAvailabilityRisksRequest"
       }
     },
@@ -2399,7 +2409,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Internal"],
+        "tags": [
+          "Internal"
+        ],
         "x-request-name": "GetAvailabilityRisksSummaryRequest"
       }
     },
@@ -2605,7 +2617,9 @@
             "accessTokenAuth": []
           }
         ],
-        "tags": ["Internal"],
+        "tags": [
+          "Internal"
+        ],
         "x-request-name": "GetAvailabilityRiskAffectedResourceRequest"
       }
     }
@@ -4741,6 +4755,11 @@
       }
     },
     "securitySchemes": {
+      "auth0TokenAuth": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      },
       "accessTokenAuth": {
         "in": "header",
         "name": "Authorization",
