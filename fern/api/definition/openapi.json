@@ -91,14 +91,13 @@
         },
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "AcceptInvitationRequest"
+        ]
       }
     },
     "/accounts/{account_slug}/subscriptions": {
       "get": {
         "description": "Retrieve all the subscriptions associated with a Chkk account",
-        "operationId": "getAll",
+        "operationId": "list",
         "parameters": [
           {
             "description": "The slug of the account for which to retrieve subscriptions",
@@ -131,8 +130,7 @@
         ],
         "tags": [
           "Subscription"
-        ],
-        "x-request-name": "ListSubscriptionsRequest"
+        ]
       },
       "post": {
         "description": "Add a new subscription to the account",
@@ -154,7 +152,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSubscriptionRequestBody"
+                "$ref": "#/components/schemas/CreateSubscriptionRequest"
               }
             }
           },
@@ -179,8 +177,7 @@
         ],
         "tags": [
           "Subscription"
-        ],
-        "x-request-name": "CreateSubscriptionRequest"
+        ]
       }
     },
     "/accounts/{account_slug}/subscriptions/{subscription_id}": {
@@ -230,8 +227,7 @@
         ],
         "tags": [
           "Subscription"
-        ],
-        "x-request-name": "GetSubscriptionRequest"
+        ]
       },
       "put": {
         "description": "Update the properties of a specific subscription",
@@ -282,14 +278,13 @@
         ],
         "tags": [
           "Subscription"
-        ],
-        "x-request-name": "UpdateSubscriptionRequest"
+        ]
       }
     },
     "/accounts/{account_slug}/teams": {
       "get": {
         "description": "List all teams in the given Chkk account",
-        "operationId": "getAllTeams",
+        "operationId": "listTeams",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -395,8 +390,7 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "GetAccountTeamRequest"
+        ]
       }
     },
     "/accounts/{account_slug}/teams/{team_slug}/invitations": {
@@ -475,7 +469,7 @@
     "/accounts/{account_slug}/teams/{team_slug}/membership": {
       "post": {
         "description": "Add a new member to an existing Chkk Team. This creates an invitation as well as an email notification to the person added to accept the invitation (beforehand they will not be a member)",
-        "operationId": "addUser",
+        "operationId": "addMember",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -522,14 +516,13 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "addteamMemberRequest"
+        ]
       }
     },
     "/accounts/{account_slug}/teams/{team_slug}/membership/{user_id}": {
       "delete": {
         "description": "Remove a user from a Chkk team. The user won't be notified about this change.",
-        "operationId": "deleteUser",
+        "operationId": "deleteMember",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -577,8 +570,7 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "DeleteTeamMemberRequest"
+        ]
       }
     },
     "/chkk-analytics": {
@@ -609,8 +601,7 @@
         },
         "tags": [
           "Internal"
-        ],
-        "x-request-name": "ProxyAmplitudeEventRequest"
+        ]
       }
     },
     "/cluster-contexts": {
@@ -630,14 +621,13 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "SubmitClusterContextRequest"
+        ]
       }
     },
     "/clusters": {
       "get": {
         "description": "???",
-        "operationId": "getAll",
+        "operationId": "list",
         "responses": {
           "200": {
             "content": {
@@ -657,8 +647,7 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "ListClustersRequest"
+        ]
       },
       "post": {
         "description": "???",
@@ -667,7 +656,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateClusterRequestBody"
+                "$ref": "#/components/schemas/CreateClusterRequest"
               }
             }
           },
@@ -692,8 +681,7 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "CreateClusterRequest"
+        ]
       }
     },
     "/clusters/{clusterId}": {
@@ -724,8 +712,7 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "DeleteClusterRequest"
+        ]
       },
       "get": {
         "description": "???",
@@ -761,8 +748,7 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "GetClusterRequest"
+        ]
       },
       "put": {
         "description": "???",
@@ -783,7 +769,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateClusterRequestBody"
+                "$ref": "#/components/schemas/UpdateClusterRequest"
               }
             }
           },
@@ -808,14 +794,13 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "UpdateClusterRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/arsigs": {
       "get": {
         "description": "???",
-        "operationId": "getAllWithArsigs",
+        "operationId": "listWithArsigs",
         "parameters": [
           {
             "explode": false,
@@ -847,8 +832,7 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "ListClusterScansWithArsigsRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/deactivate": {
@@ -871,7 +855,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeactivateClusterRequestBody"
+                "$ref": "#/components/schemas/DeactivateClusterRequest"
               }
             }
           },
@@ -896,14 +880,13 @@
         ],
         "tags": [
           "Cluster"
-        ],
-        "x-request-name": "DeactivateClusterRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/lars": {
       "get": {
         "description": "???",
-        "operationId": "getAllClusterScans",
+        "operationId": "listClusterScans",
         "parameters": [
           {
             "explode": false,
@@ -935,14 +918,13 @@
         ],
         "tags": [
           "Scan"
-        ],
-        "x-request-name": "ListClusterScansWithLarsRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/lars/status": {
       "get": {
         "description": "List the status of all LARs for a cluster",
-        "operationId": "getAll",
+        "operationId": "list",
         "parameters": [
           {
             "explode": false,
@@ -974,8 +956,7 @@
         ],
         "tags": [
           "LAR Status"
-        ],
-        "x-request-name": "ListLARsStatusRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/lars/status/{larId}": {
@@ -1023,8 +1004,7 @@
         ],
         "tags": [
           "LAR Status"
-        ],
-        "x-request-name": "GetLARStatusRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/lars/status/{larId}/ignore": {
@@ -1057,7 +1037,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/IgnoreLARRequestBody"
+                "$ref": "#/components/schemas/IgnoreLARRequest"
               }
             }
           },
@@ -1082,8 +1062,7 @@
         ],
         "tags": [
           "LAR Status"
-        ],
-        "x-request-name": "IgnoreLARRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/lars/status/{larId}/acknowledge": {
@@ -1116,7 +1095,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AcknowledgeLARRequestBody"
+                "$ref": "#/components/schemas/AcknowledgeLARRequest"
               }
             }
           },
@@ -1141,8 +1120,7 @@
         ],
         "tags": [
           "LAR Status"
-        ],
-        "x-request-name": "AcknowledgeLARRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/rescan": {
@@ -1180,8 +1158,7 @@
         ],
         "tags": [
           "Scan"
-        ],
-        "x-request-name": "GetClusterRescanStateRequest"
+        ]
       },
       "post": {
         "description": "???",
@@ -1202,7 +1179,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RescanClusterRequestBody"
+                "$ref": "#/components/schemas/RescanClusterRequest"
               }
             }
           },
@@ -1227,8 +1204,7 @@
         ],
         "tags": [
           "Scan"
-        ],
-        "x-request-name": "RescanClusterRequest"
+        ]
       }
     },
     "/clusters/{clusterId}/scan": {
@@ -1251,7 +1227,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateClusterScanRequestBody"
+                "$ref": "#/components/schemas/CreateClusterScanRequest"
               }
             }
           },
@@ -1276,8 +1252,7 @@
         ],
         "tags": [
           "Scan"
-        ],
-        "x-request-name": "CreateClusterScanRequest"
+        ]
       }
     },
     "/feedbacks": {
@@ -1288,7 +1263,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubmitFeedbackRequestBody"
+                "$ref": "#/components/schemas/SubmitFeedbackRequest"
               }
             }
           },
@@ -1308,8 +1283,7 @@
         },
         "tags": [
           "Internal"
-        ],
-        "x-request-name": "SubmitFeedbackRequest"
+        ]
       }
     },
     "/insights": {
@@ -1330,8 +1304,7 @@
         "tags": [
           "Internal",
           "Deprecated"
-        ],
-        "x-request-name": "GetInsightsRequest"
+        ]
       }
     },
     "/insights/periods": {
@@ -1352,14 +1325,13 @@
         "tags": [
           "Internal",
           "Deprecated"
-        ],
-        "x-request-name": "GetInsightsPeriodsRequest"
+        ]
       }
     },
     "/integrations": {
       "get": {
         "description": "List the integrations configured in the Chkk account",
-        "operationId": "getAll",
+        "operationId": "list",
         "responses": {
           "200": {
             "content": {
@@ -1379,8 +1351,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "ListIntegrationsRequest"
+        ]
       },
       "post": {
         "description": "Create a new integration in the Chkk account",
@@ -1389,7 +1360,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateIntegrationRequestBody"
+                "$ref": "#/components/schemas/CreateIntegrationRequest"
               }
             }
           },
@@ -1414,8 +1385,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "CreateIntegrationRequest"
+        ]
       }
     },
     "/integrations/prometheus/metrics": {
@@ -1435,8 +1405,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "GetPrometheusMetricsScrapeRequest"
+        ]
       }
     },
     "/integrations/prometheus/status": {
@@ -1502,8 +1471,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "DeleteIntegrationRequest"
+        ]
       },
       "get": {
         "description": "Get the details of an existing integration",
@@ -1540,8 +1508,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "GetIntegrationRequest"
+        ]
       },
       "put": {
         "description": "Update an existing integration (e.g. with new status)",
@@ -1563,7 +1530,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateIntegrationRequestBody"
+                "$ref": "#/components/schemas/UpdateIntegrationRequest"
               }
             }
           },
@@ -1588,8 +1555,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "UpdateIntegrationRequest"
+        ]
       }
     },
     "/integrations/{integrationId}/alert_manager_config": {
@@ -1624,8 +1590,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "GetIntegrationAlertManagerConfigRequest"
+        ]
       }
     },
     "/kbas/{arsigId}": {
@@ -1657,8 +1622,7 @@
         ],
         "tags": [
           "Internal"
-        ],
-        "x-request-name": "GetKbaRequest"
+        ]
       }
     },
     "/larsoverview": {
@@ -1684,8 +1648,7 @@
         ],
         "tags": [
           "LAR Status"
-        ],
-        "x-request-name": "GetLarOverviewRequest"
+        ]
       }
     },
     "/login": {
@@ -1711,8 +1674,7 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "LoginRequest"
+        ]
       }
     },
     "/orgs/{org_slug}": {
@@ -1751,8 +1713,7 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "GetOrganizationRequest"
+        ]
       },
       "put": {
         "description": "Update the details of a specific organization (e.g. the displayed name)",
@@ -1774,7 +1735,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateOrganizationRequestBody"
+                "$ref": "#/components/schemas/UpdateOrganizationRequest"
               }
             }
           },
@@ -1799,14 +1760,13 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "UpdateOrganizationRequest"
+        ]
       }
     },
     "/orgs/{org_slug}/tokens": {
       "get": {
         "description": "List the access tokens for the different accounts in the Chkk organization (for the calling user)",
-        "operationId": "getAllAccessTokens",
+        "operationId": "listAccessTokens",
         "parameters": [
           {
             "description": "The slug of the organization to manage",
@@ -1839,8 +1799,7 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "ListAccessTokensRequest"
+        ]
       }
     },
     "/ingestion_scopes/{id}/token": {
@@ -1879,8 +1838,7 @@
         ],
         "tags": [
           "Identity"
-        ],
-        "x-request-name": "GetIngestionTokenRequest"
+        ]
       }
     },
     "/quick-start": {
@@ -1906,8 +1864,7 @@
         ],
         "tags": [
           "Internal"
-        ],
-        "x-request-name": "GetQuickStartStateRequest"
+        ]
       }
     },
     "/resources": {
@@ -1958,7 +1915,7 @@
     "/scans": {
       "get": {
         "description": "???",
-        "operationId": "getAllScans",
+        "operationId": "list",
         "responses": {
           "200": {
             "content": {
@@ -1978,17 +1935,16 @@
         ],
         "tags": [
           "Scan"
-        ],
-        "x-request-name": "ListScansRequest"
+        ]
       },
       "post": {
         "description": "???",
-        "operationId": "createScan",
+        "operationId": "create",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateScanRequestBody"
+                "$ref": "#/components/schemas/CreateScanRequest"
               }
             }
           },
@@ -2013,8 +1969,7 @@
         ],
         "tags": [
           "Scan"
-        ],
-        "x-request-name": "CreateScanRequest"
+        ]
       }
     },
     "/sentry-proxy": {
@@ -2029,8 +1984,7 @@
         },
         "tags": [
           "Internal"
-        ],
-        "x-request-name": "ProxySentryReportRequest"
+        ]
       }
     },
     "/tickets": {
@@ -2041,7 +1995,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTicketRequestBody"
+                "$ref": "#/components/schemas/CreateTicketRequest"
               }
             }
           },
@@ -2060,8 +2014,7 @@
         ],
         "tags": [
           "Integration"
-        ],
-        "x-request-name": "CreateTicketRequest"
+        ]
       }
     },
     "/notifications/agent-status": {
@@ -2072,7 +2025,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubmitAgentStatusNotificationRequestBody"
+                "$ref": "#/components/schemas/SubmitAgentStatusNotificationRequest"
               }
             }
           },
@@ -2088,8 +2041,7 @@
         ],
         "tags": [
           "Agent"
-        ],
-        "x-request-name": "SubmitAgentStatusNotificationRequest"
+        ]
       }
     },
     "/notifications/agent-install": {
@@ -2134,14 +2086,13 @@
         "tags": [
           "Identity",
           "Agent"
-        ],
-        "x-request-name": "GetUsersRequest"
+        ]
       }
     },
     "/availability_risks": {
       "get": {
         "description": "List the AvailabilityRisks in the account, filtered by the query parameters",
-        "operationId": "getAllAvailabilityRisks",
+        "operationId": "listAvailabilityRisks",
         "parameters": [
           {
             "description": "The filter can include one or multiple clauses separated by commas, e.g., severity:low, need_attention:true, category:defects",
@@ -2728,7 +2679,7 @@
         ],
         "type": "object"
       },
-      "CreateSubscriptionRequestBody": {
+      "CreateSubscriptionRequest": {
         "properties": {
           "subscription_type": {
             "$ref": "#/components/schemas/SubscriptionType"
@@ -3100,7 +3051,7 @@
         ],
         "type": "string"
       },
-      "CreateClusterRequestBody": {
+      "CreateClusterRequest": {
         "description": "???",
         "properties": {
           "name": {
@@ -3164,7 +3115,7 @@
       "ClusterRequestTypeString": {
         "type": "string"
       },
-      "UpdateClusterRequestBody": {
+      "UpdateClusterRequest": {
         "description": "???",
         "properties": {
           "name": {
@@ -3405,7 +3356,7 @@
         ],
         "type": "object"
       },
-      "DeactivateClusterRequestBody": {
+      "DeactivateClusterRequest": {
         "description": "???",
         "properties": {
           "status": {
@@ -3483,7 +3434,7 @@
         ],
         "type": "object"
       },
-      "IgnoreLARRequestBody": {
+      "IgnoreLARRequest": {
         "properties": {
           "ignore": {
             "description": "Whether to ignore or unignore the LAR",
@@ -3495,7 +3446,7 @@
         ],
         "type": "object"
       },
-      "AcknowledgeLARRequestBody": {
+      "AcknowledgeLARRequest": {
         "properties": {
           "acknowledge": {
             "description": "Whether to acknowledge or unacknowledge the LAR",
@@ -3507,7 +3458,7 @@
         ],
         "type": "object"
       },
-      "RescanClusterRequestBody": {
+      "RescanClusterRequest": {
         "description": "???",
         "properties": {
           "rescan_status": {
@@ -3519,7 +3470,7 @@
         ],
         "type": "object"
       },
-      "CreateClusterScanRequestBody": {
+      "CreateClusterScanRequest": {
         "description": "request from the collector to trigger the processing of a new scan",
         "properties": {
           "cluster_id": {
@@ -3539,7 +3490,7 @@
         ],
         "type": "object"
       },
-      "SubmitFeedbackRequestBody": {
+      "SubmitFeedbackRequest": {
         "properties": {
           "title": {
             "description": "The type of the feedback request. NewSignUpRequest, ReportAvailabilityRiskRequest and k8sExpertRequest have special meaning but callers might also specify their own values",
@@ -3593,7 +3544,7 @@
         ],
         "type": "object"
       },
-      "CreateIntegrationRequestBody": {
+      "CreateIntegrationRequest": {
         "description": "???",
         "properties": {
           "integration_name": {
@@ -3777,7 +3728,7 @@
         ],
         "type": "object"
       },
-      "UpdateIntegrationRequestBody": {
+      "UpdateIntegrationRequest": {
         "description": "???",
         "properties": {
           "integration_name": {
@@ -3954,7 +3905,7 @@
         ],
         "type": "string"
       },
-      "UpdateOrganizationRequestBody": {
+      "UpdateOrganizationRequest": {
         "description": "Update the details of a Chkk Organization",
         "properties": {
           "name": {
@@ -4074,7 +4025,7 @@
         ],
         "type": "object"
       },
-      "CreateScanRequestBody": {
+      "CreateScanRequest": {
         "description": "Start a scan of the provided cluster",
         "properties": {
           "cluster_id": {
@@ -4109,7 +4060,7 @@
         ],
         "type": "object"
       },
-      "CreateTicketRequestBody": {
+      "CreateTicketRequest": {
         "description": "???",
         "properties": {
           "summary": {
@@ -4184,7 +4135,7 @@
         ],
         "type": "object"
       },
-      "SubmitAgentStatusNotificationRequestBody": {
+      "SubmitAgentStatusNotificationRequest": {
         "properties": {
           "resource_id": {
             "description": "The ID of the resource that the notification is about.",
