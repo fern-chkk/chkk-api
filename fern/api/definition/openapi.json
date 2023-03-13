@@ -22,7 +22,7 @@
     {
       "description": "Prod AWS US-West-2",
       "url": "https://api.us-west-2.aws.chkk.io/v1",
-      "x-server-name": "Production AWS US-West-2"
+      "x-server-name": "Production AWS US West"
     }
   ],
   "tags": [
