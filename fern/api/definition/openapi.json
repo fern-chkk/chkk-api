@@ -16,17 +16,19 @@
   "servers": [
     {
       "description": "Prod",
-      "url": "https://api.chkk.dev/v1"
+      "url": "https://api.chkk.dev/v1",
+      "x-server-name": "Production"
     },
     {
       "description": "Prod AWS US-West-2",
-      "url": "https://api.us-west-2.aws.chkk.io/v1"
+      "url": "https://api.us-west-2.aws.chkk.io/v1",
+      "x-server-name": "Production AWS US West"
     }
   ],
   "tags": [
     {
       "description": "APIs for management of subscriptions",
-      "name": "Subscription Management"
+      "name": "Subscription"
     },
     {
       "description": "APIs used internally by Chkk components and are not meant for external callers",
@@ -34,31 +36,31 @@
     },
     {
       "description": "APIs used to manage users, organizations and other identity concepts in Chkk",
-      "name": "Identity Management"
+      "name": "Identity"
     },
     {
       "description": "API used by the Chkk Agent or Chkk Operator that runs inside the K8s cluster",
-      "name": "Agent API"
+      "name": "Agent"
     },
     {
       "description": "APIs used to manage LARs and their lifecycle",
-      "name": "LAR Status Management"
+      "name": "LAR Status"
     },
     {
       "description": "???",
-      "name": "Cluster Management"
+      "name": "Cluster"
     },
     {
       "description": "???",
-      "name": "Scan Management"
+      "name": "Scan"
     },
     {
       "description": "APIs used to manage the integrations of Chkk with customer systems (e.g. ticketing)",
-      "name": "Integration Management"
+      "name": "Integration"
     },
     {
       "description": "APIs used by the systems integrated with Chkk - not for management of such integrations",
-      "name": "Integration Data Plane"
+      "name": "Integration Data"
     },
     {
       "description": "APIs that are not to be used for new features and we are working to phase out",
@@ -69,7 +71,7 @@
     "/accept/{invite_key}": {
       "post": {
         "description": "Accept an invitation into a Chkk team. This does not require further authentication, as it only executes prior-created invitations.",
-        "operationId": "AcceptInvitation",
+        "operationId": "acceptInvitation",
         "parameters": [
           {
             "explode": false,
@@ -88,14 +90,14 @@
           }
         },
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/accounts/{account_slug}/subscriptions": {
       "get": {
         "description": "Retrieve all the subscriptions associated with a Chkk account",
-        "operationId": "ListSubscriptions",
+        "operationId": "list",
         "parameters": [
           {
             "description": "The slug of the account for which to retrieve subscriptions",
@@ -127,12 +129,12 @@
           }
         ],
         "tags": [
-          "Subscription Management"
+          "Subscription"
         ]
       },
       "post": {
         "description": "Add a new subscription to the account",
-        "operationId": "CreateSubscription",
+        "operationId": "create",
         "parameters": [
           {
             "description": "The slug of the account for which to retrieve subscriptions",
@@ -174,14 +176,14 @@
           }
         ],
         "tags": [
-          "Subscription Management"
+          "Subscription"
         ]
       }
     },
     "/accounts/{account_slug}/subscriptions/{subscription_id}": {
       "get": {
         "description": "Retrieve the details of a specific subscription",
-        "operationId": "GetSubscription",
+        "operationId": "get",
         "parameters": [
           {
             "description": "The slug of the account for which to retrieve a subscription",
@@ -224,12 +226,12 @@
           }
         ],
         "tags": [
-          "Subscription Management"
+          "Subscription"
         ]
       },
       "put": {
         "description": "Update the properties of a specific subscription",
-        "operationId": "UpdateSubscription",
+        "operationId": "update",
         "parameters": [
           {
             "description": "The slug of the account for which to retrieve a subscription",
@@ -258,7 +260,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateSubscriptionRequest"
+                "$ref": "#/components/schemas/UpdateSubscriptionRequestBody"
               }
             }
           },
@@ -275,14 +277,14 @@
           }
         ],
         "tags": [
-          "Subscription Management"
+          "Subscription"
         ]
       }
     },
     "/accounts/{account_slug}/teams": {
       "get": {
         "description": "List all teams in the given Chkk account",
-        "operationId": "ListAccountTeams",
+        "operationId": "listTeams",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -336,14 +338,15 @@
           }
         ],
         "tags": [
-          "Identity Management"
-        ]
+          "Identity"
+        ],
+        "x-request-name": "ListAccountTeamsRequest"
       }
     },
     "/accounts/{account_slug}/teams/{team_slug}": {
       "get": {
         "description": "Get the details for a specific Chkk team in the Chkk account",
-        "operationId": "GetAccountTeam",
+        "operationId": "getAccount",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -386,14 +389,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/accounts/{account_slug}/teams/{team_slug}/invitations": {
       "get": {
         "description": "List the pending invitations to the Chkk team.",
-        "operationId": "ListTeamInvitations",
+        "operationId": "listInvitations",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -458,14 +461,15 @@
           }
         ],
         "tags": [
-          "Identity Management"
-        ]
+          "Identity"
+        ],
+        "x-request-name": "ListTeamInvitationsRequest"
       }
     },
     "/accounts/{account_slug}/teams/{team_slug}/membership": {
       "post": {
         "description": "Add a new member to an existing Chkk Team. This creates an invitation as well as an email notification to the person added to accept the invitation (beforehand they will not be a member)",
-        "operationId": "AddTeamMember",
+        "operationId": "addMember",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -511,14 +515,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/accounts/{account_slug}/teams/{team_slug}/membership/{user_id}": {
       "delete": {
         "description": "Remove a user from a Chkk team. The user won't be notified about this change.",
-        "operationId": "DeleteTeamMember",
+        "operationId": "deleteMember",
         "parameters": [
           {
             "description": "The slug of the account for which to manage teams",
@@ -565,14 +569,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/chkk-analytics": {
       "post": {
         "description": "Endpoint for the Amplitude tunnel used by the web apps to report analytics.",
-        "operationId": "ProxyAmplitudeEvent",
+        "operationId": "createProxyAmplitudeEvent",
         "requestBody": {
           "content": {
             "application/json": {
@@ -596,14 +600,14 @@
           }
         },
         "tags": [
-          "Internal Endpoints"
+          "Internal"
         ]
       }
     },
     "/cluster-contexts": {
       "post": {
         "description": "???",
-        "operationId": "SubmitClusterContext",
+        "operationId": "submitClusterContext",
         "responses": {
           "200": {
             "content": {},
@@ -616,15 +620,14 @@
           }
         ],
         "tags": [
-          "Deprecated",
-          "Agent API"
+          "Cluster"
         ]
       }
     },
     "/clusters": {
       "get": {
         "description": "???",
-        "operationId": "ListClusters",
+        "operationId": "list",
         "responses": {
           "200": {
             "content": {
@@ -643,13 +646,12 @@
           }
         ],
         "tags": [
-          "Agent API",
-          "Cluster Management"
+          "Cluster"
         ]
       },
       "post": {
         "description": "???",
-        "operationId": "CreateCluster",
+        "operationId": "create",
         "requestBody": {
           "content": {
             "application/json": {
@@ -678,14 +680,14 @@
           }
         ],
         "tags": [
-          "Agent API"
+          "Cluster"
         ]
       }
     },
     "/clusters/{clusterId}": {
       "delete": {
         "description": "???",
-        "operationId": "DeleteCluster",
+        "operationId": "delete",
         "parameters": [
           {
             "explode": false,
@@ -709,12 +711,12 @@
           }
         ],
         "tags": [
-          "Cluster Management"
+          "Cluster"
         ]
       },
       "get": {
         "description": "???",
-        "operationId": "GetCluster",
+        "operationId": "get",
         "parameters": [
           {
             "explode": false,
@@ -745,12 +747,12 @@
           }
         ],
         "tags": [
-          "Cluster Management"
+          "Cluster"
         ]
       },
       "put": {
         "description": "???",
-        "operationId": "UpdateCluster",
+        "operationId": "update",
         "parameters": [
           {
             "explode": false,
@@ -791,15 +793,14 @@
           }
         ],
         "tags": [
-          "Agent API",
-          "Cluster Management"
+          "Cluster"
         ]
       }
     },
     "/clusters/{clusterId}/arsigs": {
       "get": {
         "description": "???",
-        "operationId": "ListClusterScansWithArsigs",
+        "operationId": "listWithArsigs",
         "parameters": [
           {
             "explode": false,
@@ -830,14 +831,14 @@
           }
         ],
         "tags": [
-          "Scan Management"
+          "Cluster"
         ]
       }
     },
     "/clusters/{clusterId}/deactivate": {
       "post": {
         "description": "???",
-        "operationId": "DeactivateCluster",
+        "operationId": "deactivate",
         "parameters": [
           {
             "explode": false,
@@ -878,14 +879,14 @@
           }
         ],
         "tags": [
-          "Cluster Management"
+          "Cluster"
         ]
       }
     },
     "/clusters/{clusterId}/lars": {
       "get": {
         "description": "???",
-        "operationId": "ListClusterScansWithLars",
+        "operationId": "listClusterScans",
         "parameters": [
           {
             "explode": false,
@@ -916,14 +917,14 @@
           }
         ],
         "tags": [
-          "Scan Management"
+          "Scan"
         ]
       }
     },
     "/clusters/{clusterId}/lars/status": {
       "get": {
         "description": "List the status of all LARs for a cluster",
-        "operationId": "ListLARsStatus",
+        "operationId": "list",
         "parameters": [
           {
             "explode": false,
@@ -954,14 +955,14 @@
           }
         ],
         "tags": [
-          "LAR Status Management"
+          "LAR Status"
         ]
       }
     },
     "/clusters/{clusterId}/lars/status/{larId}": {
       "get": {
         "description": "Get the status of a specific LAR",
-        "operationId": "GetLARStatus",
+        "operationId": "get",
         "parameters": [
           {
             "explode": false,
@@ -1002,14 +1003,14 @@
           }
         ],
         "tags": [
-          "LAR Status Management"
+          "LAR Status"
         ]
       }
     },
     "/clusters/{clusterId}/lars/status/{larId}/ignore": {
       "post": {
         "description": "Ignore a specific LAR",
-        "operationId": "IgnoreLAR",
+        "operationId": "ignore",
         "parameters": [
           {
             "explode": false,
@@ -1060,14 +1061,14 @@
           }
         ],
         "tags": [
-          "LAR Status Management"
+          "LAR Status"
         ]
       }
     },
     "/clusters/{clusterId}/lars/status/{larId}/acknowledge": {
       "post": {
         "description": "Acknowledge a specific LAR",
-        "operationId": "AcknowledgeLAR",
+        "operationId": "acknowledge",
         "parameters": [
           {
             "explode": false,
@@ -1118,14 +1119,14 @@
           }
         ],
         "tags": [
-          "LAR Status Management"
+          "LAR Status"
         ]
       }
     },
     "/clusters/{clusterId}/rescan": {
       "get": {
         "description": "???",
-        "operationId": "GetClusterRescanState",
+        "operationId": "getClusterRescanState",
         "parameters": [
           {
             "explode": false,
@@ -1156,12 +1157,12 @@
           }
         ],
         "tags": [
-          "Agent API"
+          "Scan"
         ]
       },
       "post": {
         "description": "???",
-        "operationId": "RescanCluster",
+        "operationId": "createRescanCluster",
         "parameters": [
           {
             "explode": false,
@@ -1202,14 +1203,14 @@
           }
         ],
         "tags": [
-          "Agent API"
+          "Scan"
         ]
       }
     },
     "/clusters/{clusterId}/scan": {
       "post": {
         "description": "???",
-        "operationId": "CreateClusterScan",
+        "operationId": "createClusterScan",
         "parameters": [
           {
             "explode": false,
@@ -1250,14 +1251,14 @@
           }
         ],
         "tags": [
-          "Agent API"
+          "Scan"
         ]
       }
     },
     "/feedbacks": {
       "post": {
         "description": "Endpoint for reporting feedback about Chkk of different nature - user sign-up requests, k8s questions or general feedback",
-        "operationId": "SubmitFeedback",
+        "operationId": "submitFeedback",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1281,14 +1282,14 @@
           }
         },
         "tags": [
-          "Internal Endpoints"
+          "Internal"
         ]
       }
     },
     "/insights": {
       "get": {
         "description": "???",
-        "operationId": "GetInsights",
+        "operationId": "getInsights",
         "responses": {
           "200": {
             "content": {},
@@ -1301,6 +1302,7 @@
           }
         ],
         "tags": [
+          "Internal",
           "Deprecated"
         ]
       }
@@ -1321,6 +1323,7 @@
           }
         ],
         "tags": [
+          "Internal",
           "Deprecated"
         ]
       }
@@ -1328,7 +1331,7 @@
     "/integrations": {
       "get": {
         "description": "List the integrations configured in the Chkk account",
-        "operationId": "ListIntegrations",
+        "operationId": "list",
         "responses": {
           "200": {
             "content": {
@@ -1347,12 +1350,12 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       },
       "post": {
         "description": "Create a new integration in the Chkk account",
-        "operationId": "CreateIntegration",
+        "operationId": "create",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1381,14 +1384,14 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       }
     },
     "/integrations/prometheus/metrics": {
       "get": {
         "description": "???",
-        "operationId": "GetPrometheusMetricsScrape",
+        "operationId": "getPrometheusMetricsScrape",
         "responses": {
           "200": {
             "content": {},
@@ -1401,14 +1404,14 @@
           }
         ],
         "tags": [
-          "Integration Data Plane"
+          "Integration"
         ]
       }
     },
     "/integrations/prometheus/status": {
       "get": {
         "description": "???",
-        "operationId": "GetPrometheusStatus",
+        "operationId": "getPrometheusStatus",
         "parameters": [
           {
             "description": "???",
@@ -1434,14 +1437,15 @@
           }
         ],
         "tags": [
-          "Integration Management"
-        ]
+          "Integration"
+        ],
+        "x-request-name": "GetPrometheusStatusRequest"
       }
     },
     "/integrations/{integrationId}": {
       "delete": {
         "description": "Delete an existing integration from the Chkk account",
-        "operationId": "DeleteIntegration",
+        "operationId": "delete",
         "parameters": [
           {
             "description": "The ID of the integration to work with",
@@ -1466,12 +1470,12 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       },
       "get": {
         "description": "Get the details of an existing integration",
-        "operationId": "GetIntegration",
+        "operationId": "get",
         "parameters": [
           {
             "description": "The ID of the integration to work with",
@@ -1503,12 +1507,12 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       },
       "put": {
         "description": "Update an existing integration (e.g. with new status)",
-        "operationId": "UpdateIntegration",
+        "operationId": "update",
         "parameters": [
           {
             "description": "The ID of the integration to work with",
@@ -1550,14 +1554,14 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       }
     },
     "/integrations/{integrationId}/alert_manager_config": {
       "get": {
         "description": "Retrieve the alert manager configuration snippet for the referenced integration",
-        "operationId": "GetIntegrationAlertManagerConfig",
+        "operationId": "getAlertManagerConfig",
         "parameters": [
           {
             "description": "The ID of the integration to work with",
@@ -1585,14 +1589,14 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       }
     },
     "/kbas/{arsigId}": {
       "get": {
         "description": "???",
-        "operationId": "GetKba",
+        "operationId": "getKba",
         "parameters": [
           {
             "explode": false,
@@ -1615,13 +1619,16 @@
           {
             "accessTokenAuth": []
           }
+        ],
+        "tags": [
+          "Internal"
         ]
       }
     },
     "/larsoverview": {
       "get": {
         "description": "???",
-        "operationId": "GetLarOverview",
+        "operationId": "getOverview",
         "responses": {
           "200": {
             "content": {
@@ -1640,14 +1647,14 @@
           }
         ],
         "tags": [
-          "LAR Status Management"
+          "LAR Status"
         ]
       }
     },
     "/login": {
       "post": {
         "description": "Login the provided user, and make sure their core data structures are ready for use (e.g. that they have an account setup for them)",
-        "operationId": "Login",
+        "operationId": "login",
         "responses": {
           "200": {
             "content": {
@@ -1666,14 +1673,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/orgs/{org_slug}": {
       "get": {
         "description": "Get the details for a specific organization",
-        "operationId": "GetOrganization",
+        "operationId": "getOrganization",
         "parameters": [
           {
             "description": "The slug of the organization to manage",
@@ -1705,12 +1712,12 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       },
       "put": {
         "description": "Update the details of a specific organization (e.g. the displayed name)",
-        "operationId": "UpdateOrganization",
+        "operationId": "updateOrganization",
         "parameters": [
           {
             "description": "The slug of the organization to manage",
@@ -1752,14 +1759,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/orgs/{org_slug}/tokens": {
       "get": {
         "description": "List the access tokens for the different accounts in the Chkk organization (for the calling user)",
-        "operationId": "ListAccessTokens",
+        "operationId": "listAccessTokens",
         "parameters": [
           {
             "description": "The slug of the organization to manage",
@@ -1791,14 +1798,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/ingestion_scopes/{id}/token": {
       "get": {
         "description": "Get the ingestion token for the account",
-        "operationId": "GetIngestionToken",
+        "operationId": "getIngestionToken",
         "parameters": [
           {
             "description": "The ID of the ingestion scope to get the token for",
@@ -1830,14 +1837,14 @@
           }
         ],
         "tags": [
-          "Identity Management"
+          "Identity"
         ]
       }
     },
     "/quick-start": {
       "get": {
         "description": "???",
-        "operationId": "GetQuickStartState",
+        "operationId": "getQuickStartState",
         "responses": {
           "200": {
             "content": {
@@ -1854,13 +1861,16 @@
           {
             "accessTokenAuth": []
           }
+        ],
+        "tags": [
+          "Internal"
         ]
       }
     },
     "/resources": {
       "get": {
         "description": "???",
-        "operationId": "GetResource",
+        "operationId": "getResource",
         "parameters": [
           {
             "description": "the type of integration that the resource is retrieved for",
@@ -1897,15 +1907,15 @@
           }
         ],
         "tags": [
-          "Deprecated",
-          "Integration Management"
-        ]
+          "Integration"
+        ],
+        "x-request-name": "GetResourceRequest"
       }
     },
     "/scans": {
       "get": {
         "description": "???",
-        "operationId": "ListScans",
+        "operationId": "list",
         "responses": {
           "200": {
             "content": {
@@ -1922,11 +1932,14 @@
           {
             "accessTokenAuth": []
           }
+        ],
+        "tags": [
+          "Scan"
         ]
       },
       "post": {
         "description": "???",
-        "operationId": "CreateScan",
+        "operationId": "create",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1953,13 +1966,16 @@
           {
             "accessTokenAuth": []
           }
+        ],
+        "tags": [
+          "Scan"
         ]
       }
     },
     "/sentry-proxy": {
       "post": {
         "description": "Endpoint for the Sentry tunnel used by the web apps to report issues.\n\nSee https://docs.sentry.io/platforms/javascript/troubleshooting/#using-the-tunnel-option for more details.\n\nThe requests are in POST form, and consist of 3 lines with the first being a form of header containing the DSN of the report. The other lines report metadata as well as the stacktrace/breadcrumbs.\n",
-        "operationId": "ProxySentryReport",
+        "operationId": "createProxySentryReport",
         "responses": {
           "200": {
             "content": {},
@@ -1967,14 +1983,14 @@
           }
         },
         "tags": [
-          "Internal Endpoints"
+          "Internal"
         ]
       }
     },
     "/tickets": {
       "post": {
         "description": "???",
-        "operationId": "CreateTicket",
+        "operationId": "createTicket",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1997,14 +2013,14 @@
           }
         ],
         "tags": [
-          "Integration Management"
+          "Integration"
         ]
       }
     },
     "/notifications/agent-status": {
       "post": {
         "description": "Submit status notification for an agent",
-        "operationId": "SubmitAgentStatusNotification",
+        "operationId": "submitAgentStatusNotification",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2024,14 +2040,14 @@
           {}
         ],
         "tags": [
-          "Agent API"
+          "Agent"
         ]
       }
     },
     "/notifications/agent-install": {
       "post": {
         "description": "Submit an install notification for an agent",
-        "operationId": "SubmitAgentInstallNotification",
+        "operationId": "submitAgentInstallNotification",
         "responses": {
           "204": {
             "description": "204 response"
@@ -2041,14 +2057,15 @@
           {}
         ],
         "tags": [
-          "Agent API"
-        ]
+          "Agent"
+        ],
+        "x-request-name": "SubmitAgentInstallNotificationRequest"
       }
     },
     "/users": {
       "get": {
         "description": "Get details of the calling user",
-        "operationId": "GetUsers",
+        "operationId": "getUser",
         "responses": {
           "200": {
             "content": {
@@ -2067,15 +2084,15 @@
           }
         ],
         "tags": [
-          "Identity Management",
-          "Agent API"
+          "Identity",
+          "Agent"
         ]
       }
     },
     "/availability_risks": {
       "get": {
         "description": "List the AvailabilityRisks in the account, filtered by the query parameters",
-        "operationId": "ListAvailabilityRisks",
+        "operationId": "listAvailabilityRisks",
         "parameters": [
           {
             "description": "The filter can include one or multiple clauses separated by commas, e.g., severity:low, need_attention:true, category:defects",
@@ -2237,13 +2254,17 @@
           {
             "accessTokenAuth": []
           }
-        ]
+        ],
+        "tags": [
+          "Internal"
+        ],
+        "x-request-name": "ListAvailabilityRisksRequest"
       }
     },
     "/availability_risks/summary": {
       "get": {
         "description": "Return aggregate counts for the AvailabilityRisks in the account, filtered and grouped by the query parameters",
-        "operationId": "GetAvailabilityRisksSummary",
+        "operationId": "getAvailabilityRisksSummary",
         "parameters": [
           {
             "description": "group_by can be repeated. Only category is supported value for the group_by clause.",
@@ -2338,13 +2359,17 @@
           {
             "accessTokenAuth": []
           }
-        ]
+        ],
+        "tags": [
+          "Internal"
+        ],
+        "x-request-name": "GetAvailabilityRisksSummaryRequest"
       }
     },
     "/availability_risks/{availability_risk_id}/affected_resources": {
       "get": {
         "description": "List the resourcs in this account affected by the AvailabilityRisk",
-        "operationId": "GetAvailabilityRiskAffectedResource",
+        "operationId": "getAvailabilityRiskAffectedResource",
         "parameters": [
           {
             "description": "availability_risk's id e.g. chkk-k8s-111",
@@ -2542,7 +2567,11 @@
           {
             "accessTokenAuth": []
           }
-        ]
+        ],
+        "tags": [
+          "Internal"
+        ],
+        "x-request-name": "GetAvailabilityRiskAffectedResourceRequest"
       }
     }
   },
@@ -2680,7 +2709,7 @@
         ],
         "type": "object"
       },
-      "UpdateSubscriptionRequest": {
+      "UpdateSubscriptionRequestBody": {
         "properties": {},
         "type": "object"
       },
@@ -2902,7 +2931,7 @@
           },
           "labels": {
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/InlineTypeString"
             },
             "type": "object"
           },
@@ -2987,7 +3016,7 @@
           },
           "config": {
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/InlineTypeString"
             },
             "type": "object"
           },
@@ -3006,10 +3035,19 @@
       },
       "ClusterRescan": {
         "description": "???",
-        "enum": [
-          "in-progress",
-          "completed",
-          "pending"
+        "x-enum-names": [
+          {
+            "name": "in-progress",
+            "value": "in_progress"
+          },
+          {
+            "name": "completed",
+            "value": "completed"
+          },
+          {
+            "name": "pending",
+            "value": "pending"
+          }
         ],
         "type": "string"
       },
@@ -3049,7 +3087,7 @@
           },
           "labels": {
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/ClusterRequestTypeString"
             },
             "type": "object"
           },
@@ -3073,6 +3111,9 @@
           "version"
         ],
         "type": "object"
+      },
+      "ClusterRequestTypeString": {
+        "type": "string"
       },
       "UpdateClusterRequest": {
         "description": "???",
@@ -3107,7 +3148,7 @@
           },
           "labels": {
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/InlineTypeString"
             },
             "type": "object"
           },
@@ -3138,6 +3179,9 @@
           "has_more"
         ],
         "type": "object"
+      },
+      "InlineTypeString": {
+        "type": "string"
       },
       "ClusterScan": {
         "description": "???",
@@ -3241,9 +3285,12 @@
       },
       "SignatureLabel": {
         "additionalProperties": {
-          "type": "string"
+          "$ref": "#/components/schemas/StringProperty"
         },
         "type": "object"
+      },
+      "StringProperty": {
+        "type": "string"
       },
       "ClusterDetectedLar": {
         "description": "???",
@@ -3781,15 +3828,11 @@
             "type": "array"
           },
           "access_tokens": {
-            "additionalProperties": {
-              "additionalProperties": {
-                "type": "string"
-              },
-              "description": "A mapping from account slug (in the org) to the access token",
-              "type": "object"
-            },
             "description": "For each org ID that you have access to, this contains the access tokens needed to access it",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AccountAccessToken"
+            }
           }
         },
         "required": [
@@ -3797,6 +3840,13 @@
           "orgs"
         ],
         "type": "object"
+      },
+      "AccountAccessToken": {
+        "type": "object",
+        "description": "A mapping from account slug (in the org) to the access token",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/InlineTypeString"
+        }
       },
       "Organization": {
         "description": "A Chkk Organization, which owns a set of accounts. In most cases a Chkk Organization will map 1:1 to a customer, with different departments and use cases being modeled as different accounts.",
@@ -4105,6 +4155,16 @@
         ],
         "type": "object"
       },
+      "ResourceStatus": {
+        "description": "The status of the resource.",
+        "enum": [
+          "Waiting",
+          "Terminated",
+          "Running",
+          "Unknown"
+        ],
+        "type": "string"
+      },
       "AgentComponent": {
         "description": "A component of the resource which submitted the notification.",
         "properties": {
@@ -4121,14 +4181,7 @@
             "type": "string"
           },
           "state": {
-            "description": "The status of the resource.",
-            "enum": [
-              "Waiting",
-              "Terminated",
-              "Running",
-              "Unknown"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ResourceStatus"
           },
           "reason": {
             "description": "The reason for the state of the component.",
@@ -4214,10 +4267,7 @@
           },
           "labels": {
             "additionalProperties": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
+              "$ref": "#/components/schemas/StringArray"
             },
             "type": "object"
           },
@@ -4238,6 +4288,12 @@
           "title"
         ],
         "type": "object"
+      },
+      "StringArray": {
+        "items": {
+          "$ref": "#/components/schemas/StringProperty"
+        },
+        "type": "array"
       },
       "AvailabilityRiskStatus": {
         "description": "different states of an Availability Risk",
@@ -4312,7 +4368,7 @@
           },
           "metadata": {
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/StringProperty"
             },
             "description": "resource's metadata, e.g., label, version, and region etc.",
             "type": "object"
@@ -4325,6 +4381,14 @@
           "type"
         ],
         "type": "object"
+      },
+      "TeamInvitationStatus": {
+        "description": "Status of the invite",
+        "enum": [
+          "ACCEPTED",
+          "PENDING"
+        ],
+        "type": "string"
       },
       "TeamInvitation": {
         "description": "Details of an invitation for a user to join a Chkk Team",
@@ -4362,12 +4426,7 @@
             "type": "integer"
           },
           "status": {
-            "description": "Status of the invite",
-            "enum": [
-              "ACCEPTED",
-              "PENDING"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/TeamInvitationStatus"
           }
         },
         "required": [
@@ -4647,11 +4706,6 @@
       }
     },
     "securitySchemes": {
-      "auth0TokenAuth": {
-        "in": "header",
-        "name": "Authorization",
-        "type": "apiKey"
-      },
       "accessTokenAuth": {
         "in": "header",
         "name": "Authorization",
